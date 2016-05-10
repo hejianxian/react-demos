@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo07-Refs</title>
+	<script src="../bower_components/react/react.js"></script>
+	<script src="../bower_components/react/react-dom.js"></script>
+	<script src="../bower_components/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		var MyComponent = React.createClass({
+			handleClick: function(){
+				ReactDOM.findDOMNode(this.refs.myInput).focus();
+			},
+			render: function(){
+				return(
+					<div>
+						<input type="text" ref="myInput"></input>
+						<span onClick={this.handleClick}>Click me! Focus the text input</span>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<MyComponent />,
+			document.getElementById("example")
+		);
+	</script>
+</body>
+</html>

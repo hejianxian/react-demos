@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo07-form</title>
+	<script src="../bower_components/react/react.js"></script>
+	<script src="../bower_components/react/react-dom.js"></script>
+	<script src="../bower_components/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		var InputBox = React.createClass({
+			getInitialState(){
+				return {value: 'hello'};
+			},
+			handleOnChange(event){
+				this.setState({value: event.target.value.substr(0, 140)});
+			},
+			render(){
+				return(
+					<div>
+						<p>受限</p>
+						<input type="text" value="test1" />
+						<p>defaultValue，不受限</p>
+						<input type="text" defaultValue="test2" />
+						<p>效果同上</p>
+						<input type="text" />
+						<p>使用onChange方法改变受限的值</p>
+						<input type="text" value={this.state.value} onChange={this.handleOnChange}/>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<InputBox />,
+			document.getElementById("example")
+		);
+	</script>
+</body>
+</html>

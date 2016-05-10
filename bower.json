@@ -1,0 +1,27 @@
+{
+  "name": "react-demos",
+  "homepage": "https://github.com/Alex-fun/react-demos",
+  "authors": [
+    "Hejx <531601727@qq.com>"
+  ],
+  "description": "react demos",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "react"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.0.2",
+    "babel": "*"
+  }
+}

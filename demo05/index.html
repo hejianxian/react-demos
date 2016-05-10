@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo05</title>
+	<script src="../bower_components/react/react.js"></script>
+	<script src="../bower_components/react/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<div id="example2"></div>
+	<script type="text/babel">
+		var CheckLink = React.createClass({
+			render: function(){
+				return (
+					<a {...this.props}>{this.props.children}</a>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<CheckLink href="#0" title="check">
+				click me!
+			</CheckLink>,
+			document.getElementById("example")
+		);
+
+		//propTypes
+		var PropTypeTest =  React.createClass({
+			propTypes: {
+				children: React.propTypes.element.isRequired
+			},
+			render: function(){
+				return(
+					<div>
+						{this.props.children}
+					</div>
+				)
+			}
+		});
+		ReactDOM.render(
+			<PropTypeTest children="hello react"/>,
+			document.getElementById("example2")
+		);
+
+	</script>
+</body>
+</html>

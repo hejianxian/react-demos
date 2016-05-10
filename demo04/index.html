@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo04</title>
+	<script src="../bower_components/react/react.js"></script>
+	<script src="../bower_components/react/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		var Avatar = React.createClass({
+			render: function(){
+				return(
+					<div>
+						<Pic username={this.props.username} />
+						<Link username={this.props.username} />
+					</div>
+				);
+			}
+		});
+
+		var Pic = React.createClass({
+			render: function(){
+				return(
+					<img src={'http://graph.facebook.com/' + this.props.username + '/picture'} />
+				);
+			}
+		});
+
+		var Link = React.createClass({
+			render: function(){
+				return(
+					<a href={'http://www.facebook.com/' + this.props.username}>
+			        	{this.props.username}
+			      	</a>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<Avatar username="pwh" />,
+			document.getElementById("example")
+		);
+
+	</script>
+</body>
+</html>

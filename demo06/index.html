@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo06-mixin</title>
+	<script src="../bower_components/react/react.js"></script>
+	<script src="../bower_components/react/react-dom.js"></script>
+	<script src="../bower_components/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<!-- 
+	生命周期：
+	挂载： 组件被插入到DOM中。
+	更新： 组件被重新渲染，查明DOM是否应该刷新。
+	移除： 组件从DOM中移除。 
+	-->
+	<script type="text/babel">
+		var SetIntervalMixin = {
+			componentWillMount: function (){
+				this.intervals = [];
+			},
+			setInterval: function (){
+				this.intervals.push(setInterval.apply(null, arguments));
+			},
+			componentWillUnmount: function (){
+				this.intervals.map(clearInterval);
+			}
+		};
+
+		var TickTock = React.createClass({
+			mixins: [SetIntervalMixin],
+			getInitialState: function(){
+				return {seconds: 0};
+			},
+			componentDidMount: function(){
+				this.setInterval(this.tick, 1000);
+			},
+			tick: function(){
+				this.setState({seconds: this.state.seconds + 1})
+			},
+			render: function(){
+				return (
+					<p>
+						React has been running for {this.state.seconds} seconds.
+					</p>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<TickTock />,
+			document.getElementById("example")
+		);
+	</script>
+</body>
+</html>
