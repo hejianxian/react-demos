@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo09-ReactCSSTransitionGroup</title>
+	<script src="../bower_components/react/react-with-addons.js"></script>
+	<script src="../bower_components/react/react-dom.js"></script>
+	<script src="../bower_components/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<style type="text/css">
+	.example-enter{
+		opacity: 0.01;
+  		transition: opacity .5s ease-in;
+	}
+	.example-enter.example-enter-active {
+		opacity: 1;
+	}
+	.example-leave {
+	  	opacity: 1;
+	  	transition: opacity .5s ease-in;
+	}
+	.example-leave.example-leave-active {
+	  	opacity: 0.01;
+	}
+	</style>
+	<script type="text/babel">
+		var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+		var TodoList = React.createClass({
+			getInitialState(){
+				return {items: ['hello', 'world', 'click', 'me']};
+			},
+			handleAddItem(){
+				var newItems = this.state.items.concat([prompt('Enter some text')]);
+				this.setState({items: newItems});
+			},
+			handleRemove(i) {
+			    var newItems = this.state.items;
+			    	newItems.splice(i, 1);
+			    this.setState({items: newItems});
+		  	},
+		  	render(){
+		  		var items = this.state.items.map((item, i)=>{
+		  			return(
+		  				<div key={item} onClick={this.handleRemove.bind(this, i)}>
+		  					{item}
+		  				</div>
+		  			);
+		  		});
+		  		return(
+		  			<div>
+		  				<button onClick={this.handleAddItem}>Add Item</button>
+		  				<ReactCSSTransitionGroup transitionName='example'>
+		  					{items}
+		  				</ReactCSSTransitionGroup>
+		  			</div>
+		  		);
+		  	}
+		});
+
+		ReactDOM.render(
+			<TodoList />,
+			document.getElementById("example")
+		);
+	</script>
+</body>
+</html>

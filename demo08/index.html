@@ -10,13 +10,22 @@
 	<div id="example"></div>
 	<script type="text/babel">
 		var MyComponent = React.createClass({
+			getInitialState: function(){
+				return {value: ''};
+			},
+			handleChange: function(e){
+				this.setState({value: e.target.value});
+			},
 			handleClick: function(){
-				ReactDOM.findDOMNode(this.refs.myInput).focus();
+				this.setState({value: ''}, function(){
+					ReactDOM.findDOMNode(this.refs.myInput).focus();
+					//this.refs.myInput.getDOMNode().focus();
+				});
 			},
 			render: function(){
 				return(
 					<div>
-						<input type="text" ref="myInput"></input>
+						<input type="text" value={this.state.value} onChange={this.handleChange} ref="myInput" />
 						<span onClick={this.handleClick}>Click me! Focus the text input</span>
 					</div>
 				);
