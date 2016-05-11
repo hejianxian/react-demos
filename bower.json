@@ -22,6 +22,7 @@
   ],
   "dependencies": {
     "react": "^15.0.2",
-    "babel": "*"
+    "babel": "*",
+    "jquery": "^2.2.3"
   }
 }
